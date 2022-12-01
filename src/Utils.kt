@@ -3,7 +3,7 @@ import java.io.File
 /**
  * Reads lines from the given input txt file.
  */
-fun readInput(name: String) = File("src", "$name.txt").readLines()
+fun readInput(name: String) = File("data", "$name.txt").readLines()
 
 fun <T> Iterable<T>.splitOn(el: T): Sequence<List<T>> {
     return sequence {
