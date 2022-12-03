@@ -5,6 +5,18 @@ import java.io.File
  */
 fun readInput(name: String) = File("data", "$name.txt").readLines()
 
+fun <T> checkTest(name: String, actual: T, expected: T?) {
+    if (expected == null) {
+        return
+    }
+
+    if (expected == actual) {
+        println("$name: correct")
+    } else {
+        println("$name: expected '$expected', got '$actual'")
+    }
+}
+
 fun <T> Iterable<T>.splitOn(el: T): Sequence<List<T>> {
     return sequence {
         var cur = mutableListOf<T>()
