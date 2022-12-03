@@ -5,17 +5,11 @@ fun main() {
 
     fun prioritySum(it: String): Int {
         val priority = getPriority()
-
         val length = it.length / 2
-        val common = listOf(
-            it.subSequence(0, length),
-            it.subSequence(length, 2 * length)
-        ).map {
-            assert(it.length == length)
-            it.toSet()
-        }.let { (part1, part2) -> part1 intersect part2 }
 
-        return common.sumOf { priority[it]!! }
+        return (it.subSequence(0, length).toSet() intersect it.substring(
+            length, 2 * length
+        ).toSet()).sumOf { priority[it]!! }
     }
 
     fun part1(input: List<String>): Int {
@@ -25,11 +19,9 @@ fun main() {
     fun part2(input: List<String>): Int {
         val priority = getPriority()
 
-        return input.map { it.toSet() }.chunked(3)
-            .map {
-                it.reduce { acc, chars -> acc intersect chars }.iterator().next()
-            }
-            .sumOf { priority[it]!! }
+        return input.map { it.toSet() }.chunked(3).map {
+            it.reduce { acc, chars -> acc intersect chars }.iterator().next()
+        }.sumOf { priority[it]!! }
     }
 
     // test if implementation meets criteria from the description, like:
