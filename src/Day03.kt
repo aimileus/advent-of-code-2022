@@ -20,7 +20,7 @@ fun main() {
         val priority = getPriority()
 
         return input.map { it.toSet() }.chunked(3).map {
-            it.reduce { acc, chars -> acc intersect chars }.iterator().next()
+            it.reduce { acc, chars -> acc intersect chars }.single()
         }.sumOf { priority[it]!! }
     }
 
